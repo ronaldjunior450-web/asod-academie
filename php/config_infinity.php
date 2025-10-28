@@ -9,6 +9,7 @@ define('DB_HOST', 'sql301.infinityfree.com');
 define('DB_NAME', 'if0_39987344_asod_academie');
 define('DB_USER', 'if0_39987344');
 define('DB_PASS', 'lnGWxSJQ7dwQE3S'); // À remplacer par votre vrai mot de passe InfinityFree
+define('DB_CHARSET', 'utf8mb4');
 
 // Configuration de l'administration
 define('ADMIN_SESSION_NAME', 'asod_admin_session');
@@ -33,7 +34,7 @@ define('UPLOAD_IMAGES_PATH', 'uploads/images/');
 define('UPLOAD_DOCUMENTS_PATH', 'uploads/documents/');
 
 // Configuration de l'URL de base pour InfinityFree
-define('BASE_URL', 'https://votre-domaine.infinityfreeapp.com'); // À remplacer par votre vraie URL InfinityFree
+define('BASE_URL', 'https://asodacademie.infinityfree.me'); // URL correcte InfinityFree
 
 /**
  * Connexion à la base de données
