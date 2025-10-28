@@ -1,0 +1,11 @@
+{
+    "actif": false,
+    "methodes": {
+        "especes": true,
+        "mobile_money": false,
+        "virement": false,
+        "cheque": false
+    },
+    "devise": "FCFA",
+    "frais_mobile_money": 1.5
+}

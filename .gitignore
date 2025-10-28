@@ -1,0 +1,133 @@
+# ASOD ACADEMIE - Fichiers à ignorer par Git
+
+# ===========================================
+# FICHIERS DE CONFIGURATION SENSIBLES
+# ===========================================
+php/config_local.php
+php/smtp_config.php
+php/email_production.php
+php/email_config.php
+admin/includes/security.php
+admin/includes/performance.php
+
+# ===========================================
+# FICHIERS DE LOGS ET TEMPORAIRES
+# ===========================================
+*.log
+logs/
+admin/logs/
+error.log
+access.log
+debug.log
+
+# ===========================================
+# FICHIERS D'UPLOAD ET MÉDIAS
+# ===========================================
+uploads/
+images/players/
+images/membres/
+images/bureau/
+images/entraineurs/
+images/news/
+images/actualites/
+images/galerie/
+images/teams/
+images/uploads/
+
+# Garder les dossiers vides
+!uploads/.gitkeep
+!images/.gitkeep
+
+# ===========================================
+# FICHIERS DE SESSION ET CACHE
+# ===========================================
+sessions/
+cache/
+tmp/
+temp/
+
+# ===========================================
+# FICHIERS DE BASE DE DONNÉES
+# ===========================================
+*.sql
+*.db
+database/
+backup/
+
+# ===========================================
+# FICHIERS DE CONFIGURATION SYSTÈME
+# ===========================================
+.htaccess
+.htpasswd
+web.config
+
+# ===========================================
+# FICHIERS DE DÉVELOPPEMENT
+# ===========================================
+test_*.php
+debug_*.php
+check_*.php
+verification_*.php
+diagnostic_*.php
+*.test.php
+*.debug.php
+
+# ===========================================
+# FICHIERS DE BACKUP ET TEMPORAIRES
+# ===========================================
+*.bak
+*.backup
+*.old
+*.orig
+*~
+.DS_Store
+Thumbs.db
+
+# ===========================================
+# FICHIERS D'ENVIRONNEMENT
+# ===========================================
+.env
+.env.local
+.env.production
+.env.development
+
+# ===========================================
+# FICHIERS DE DOCUMENTATION TEMPORAIRE
+# ===========================================
+*.tmp
+*.temp
+liste_fichiers.txt
+
+# ===========================================
+# FICHIERS DE CONFIGURATION IDE
+# ===========================================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===========================================
+# FICHIERS DE COMPOSER (si ajoutés plus tard)
+# ===========================================
+vendor/
+composer.lock
+
+# ===========================================
+# FICHIERS DE NODE (si ajoutés plus tard)
+# ===========================================
+node_modules/
+package-lock.json
+yarn.lock
+
+# ===========================================
+# FICHIERS DE BUILD
+# ===========================================
+dist/
+build/
+public/build/
+
+# ===========================================
+# FICHIERS SPÉCIFIQUES WAMP/XAMPP
+# ===========================================
+wamp/
+xampp/

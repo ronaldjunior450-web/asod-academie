@@ -1,0 +1,25 @@
+{
+    "systeme_actif": false,
+    "methodes_disponibles": [
+        "CASH",
+        "MTN_MM",
+        "MOOV_MM",
+        "BANK_TRANSFER"
+    ],
+    "frais_par_defaut": 1.5,
+    "devise_principale": "FCFA",
+    "echeanciers_autorises": true,
+    "rappels_automatiques": true,
+    "integration_mobile_money": {
+        "mtn": {
+            "actif": false,
+            "api_key": "",
+            "secret": ""
+        },
+        "moov": {
+            "actif": false,
+            "api_key": "",
+            "secret": ""
+        }
+    }
+}
