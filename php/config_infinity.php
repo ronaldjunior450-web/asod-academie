@@ -8,7 +8,7 @@
 define('DB_HOST', 'sql301.infinityfree.com');
 define('DB_NAME', 'if0_39987344_asod_academie');
 define('DB_USER', 'if0_39987344');
-define('DB_PASS', 'lnGWxSJQ7dwQE3S'); // À remplacer par votre vrai mot de passe InfinityFree
+define('DB_PASS', 'lnGWxSJQ7dwQE3S'); // Mot de passe de votre panneau de contrôle InfinityFree
 define('DB_CHARSET', 'utf8mb4');
 
 // Configuration de l'administration
