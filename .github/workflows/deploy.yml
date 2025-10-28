@@ -32,16 +32,16 @@ jobs:
           **/.github/**
           **/database/**
           **/logs/**
-          **/uploads/**
-          **/images/players/**
-          **/images/membres/**
-          **/images/bureau/**
-          **/images/entraineurs/**
-          **/images/news/**
-          **/images/actualites/**
-          **/images/galerie/**
-          **/images/teams/**
-          **/images/uploads/**
+          **/uploads/temp/**
+          **/uploads/backup/**
+          **/images/players/temp/**
+          **/images/membres/temp/**
+          **/images/bureau/temp/**
+          **/images/entraineurs/temp/**
+          **/images/news/temp/**
+          **/images/actualites/temp/**
+          **/images/galerie/temp/**
+          **/images/teams/temp/**
           **/admin/logs/**
           **/admin/images/**
           **/config/paiement.json
@@ -53,7 +53,6 @@ jobs:
           **/admin/includes/security.php
           **/admin/includes/performance.php
           **/*.log
-          **/test_*.php
           **/debug_*.php
           **/check_*.php
           **/verification_*.php
