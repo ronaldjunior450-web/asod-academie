@@ -1,9 +1,17 @@
 <?php
 /**
- * Configuration de la base de données ASOD ACADEMIE - PRODUCTION
+ * Configuration de la base de données ASOD ACADEMIE - AUTO-DETECTION
  */
 
-// Configuration de la base de données - LOCAL
+// Détection automatique de l'environnement
+if (strpos($_SERVER['HTTP_HOST'], 'infinityfreeapp.com') !== false || 
+    strpos($_SERVER['HTTP_HOST'], 'infinityfree.com') !== false) {
+    // Environnement InfinityFree - Production
+    require_once __DIR__ . '/config_infinity.php';
+    return;
+}
+
+// Configuration de la base de données - LOCAL (WAMP)
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'asod_fc');
 define('DB_USER', 'root');
@@ -19,7 +27,7 @@ define('ADMIN_LOGIN_ATTEMPTS_TIMEOUT', 900); // 15 minutes
 // Configuration des emails - PRODUCTION
 define('SMTP_HOST', 'smtp.gmail.com'); // Serveur SMTP Gmail
 define('SMTP_PORT', 587); // Port sécurisé Gmail
-define('SMTP_USERNAME', 'asod.academie@gmail.com'); // Votre email Gmail
+define('SMTP_USERNAME', 'asodacademie@gmail.com'); // Votre email Gmail
 define('SMTP_PASSWORD', 'votre-mot-de-passe-app'); // Mot de passe d'application Gmail
 define('USE_SMTP', false);
 define('SMTP_FROM_EMAIL', 'noreply@asodfc.com'); // Email d'expédition

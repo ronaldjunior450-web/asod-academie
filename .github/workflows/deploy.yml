@@ -1,0 +1,77 @@
+name: 🚀 Deploy ASOD ACADEMIE to InfinityFree
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch: # Permet de déclencher manuellement
+
+jobs:
+  deploy:
+    name: 📦 Deploy to InfinityFree
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout code
+      uses: actions/checkout@v4
+      
+    - name: 📤 Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ftp.infinityfree.com
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: /htdocs/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.env
+          **/.env.*
+          **/README.md
+          **/.github/**
+          **/database/**
+          **/logs/**
+          **/uploads/**
+          **/images/players/**
+          **/images/membres/**
+          **/images/bureau/**
+          **/images/entraineurs/**
+          **/images/news/**
+          **/images/actualites/**
+          **/images/galerie/**
+          **/images/teams/**
+          **/images/uploads/**
+          **/admin/logs/**
+          **/admin/images/**
+          **/config/paiement.json
+          **/config/paiement_config.json
+          **/php/config_local.php
+          **/php/smtp_config.php
+          **/php/email_production.php
+          **/php/email_config.php
+          **/admin/includes/security.php
+          **/admin/includes/performance.php
+          **/*.log
+          **/test_*.php
+          **/debug_*.php
+          **/check_*.php
+          **/verification_*.php
+          **/diagnostic_*.php
+          **/*.test.php
+          **/*.debug.php
+          **/*.bak
+          **/*.backup
+          **/*.old
+          **/*.orig
+          **/Thumbs.db
+          **/.DS_Store
+          **/liste_fichiers.txt
+          **/CAHIER_CHARGES_ASOD_ACADEMIE.pdf
+          **/GUIDE_SYSTEME_PHOTO.md
+          **/CAHIER_CHARGES_ASOD_ACADEMIE_V2.md
+        log-level: minimal
+        dry-run: false
+        
+    - name: ✅ Deployment successful
+      run: echo "🎉 ASOD ACADEMIE deployed successfully to InfinityFree!"
