@@ -470,7 +470,8 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
             <span><?= htmlspecialchars($admin_nom_complet) ?></span>
             <a href="logout.php" class="gmail-btn gmail-btn-secondary">
                 <i class="fas fa-sign-out-alt"></i>
-                Déconnexion
+                <span class="desktop-text">Déconnexion</span>
+                <span class="mobile-text">Déco</span>
             </a>
         </div>
     </header>

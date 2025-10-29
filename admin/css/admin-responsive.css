@@ -38,6 +38,15 @@ html, body {
     padding: 0;
 }
 
+/* Gestion du texte du bouton Déconnexion - Desktop */
+.gmail-user .gmail-btn .desktop-text {
+    display: inline;
+}
+
+.gmail-user .gmail-btn .mobile-text {
+    display: none;
+}
+
 /* Interface admin mobile - Correction globale */
 @media (max-width: 768px) {
     /* Forcer la largeur de l'écran */
@@ -304,6 +313,15 @@ html, body {
     /* Masquer complètement le nom d'utilisateur sur mobile */
     .gmail-user span {
         display: none !important;
+    }
+    
+    /* Gestion du texte du bouton Déconnexion */
+    .gmail-user .gmail-btn .desktop-text {
+        display: none;
+    }
+    
+    .gmail-user .gmail-btn .mobile-text {
+        display: inline;
     }
     
     /* SIDEBAR OPTIMISÉE */
@@ -619,24 +637,10 @@ html, body {
         min-width: 0;
     }
     
-    /* Texte du bouton encore plus court - Approche alternative */
+    /* Texte du bouton optimisé pour très petits écrans */
     .gmail-user .gmail-btn {
-        position: relative;
-    }
-    
-    .gmail-user .gmail-btn::after {
-        content: "Déco";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 0.5rem;
-        white-space: nowrap;
-    }
-    
-    .gmail-user .gmail-btn {
-        font-size: 0; /* Cache le texte original */
-        color: transparent; /* Cache le texte original */
+        font-size: 0.5rem; /* 8px */
+        padding: 2px 4px;
     }
     
     .gmail-main {
