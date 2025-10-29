@@ -449,9 +449,9 @@ if (empty($images_galerie)) {
                                 <?php 
                                 $__fsPath = !empty($image['image_path']) ? dirname(__DIR__, 2) . '/' . $image['image_path'] : '';
                                 if (!empty($image['image_path']) && file_exists($__fsPath)): ?>
-                                <img src="/ges_asod/<?= htmlspecialchars($image['image_path']) ?>" 
+                                <img src="/<?= htmlspecialchars($image['image_path']) ?>" 
                                      alt="<?= htmlspecialchars($image['titre']) ?>" 
-                                     class="galerie-thumb" data-fullsrc="/ges_asod/<?= htmlspecialchars($image['image_path']) ?>">
+                                     class="galerie-thumb" data-fullsrc="/<?= htmlspecialchars($image['image_path']) ?>">
                                 <?php else: ?>
                                 <div class="bg-light d-flex align-items-center justify-content-center rounded-top" 
                                      style="height: 220px;">
