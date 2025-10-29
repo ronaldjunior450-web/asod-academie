@@ -124,10 +124,18 @@ try {
             font-weight: bold;
         }
 
+        /* Images responsives */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
         .logo img {
             width: 3.125rem;  /* 50px */
             height: 3.125rem;  /* 50px */
             border-radius: 50%;
+            object-fit: cover;
         }
 
         .nav {
@@ -339,8 +347,8 @@ try {
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));  /* minmax(200px, 1fr) */
+            gap: var(--spacing-xl);  /* 2rem */
             text-align: center;
         }
 
@@ -386,7 +394,7 @@ try {
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: var(--spacing-xxl);  /* 3rem */
             align-items: center;
         }
 
@@ -675,12 +683,12 @@ try {
             
             .about-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: var(--spacing-xl);  /* 2rem */
             }
             
             .inscription-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: var(--spacing-xl);  /* 2rem */
             }
             
             .form-row {
@@ -689,11 +697,12 @@ try {
             
             .contact-content {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: var(--spacing-xl);  /* 2rem */
             }
             
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: var(--spacing-md);  /* 1rem */
             }
             
             .footer-links {
