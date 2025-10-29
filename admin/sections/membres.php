@@ -1061,7 +1061,7 @@ $stats = [
                 </div>
                 
                 <!-- Vue en cartes pour très petits écrans -->
-                <div class="members-card-view">
+                <div class="members-card-view" style="display:none;">
                     <?php foreach ($membresGarcons as $membre): ?>
                         <div class="member-card">
                             <div class="member-card-header">
@@ -1273,7 +1273,7 @@ $stats = [
                         </div>
                         
                         <!-- Vue en cartes pour très petits écrans -->
-                        <div class="members-card-view">
+                        <div class="members-card-view" style="display:none;">
                             <?php foreach ($membresFilles as $membre): ?>
                                 <div class="member-card">
                                     <div class="member-card-header">
