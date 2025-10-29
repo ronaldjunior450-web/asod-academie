@@ -387,6 +387,14 @@ html, body {
     }
     
     /* TABLEAU MEMBRES - OPTIMISATION MOBILE */
+    .members-table-view {
+        display: block !important;
+    }
+    
+    .members-card-view {
+        display: none !important;
+    }
+    
     .members-table {
         font-size: var(--font-xs);
     }
@@ -582,11 +590,11 @@ html, body {
     
     /* TABLEAU MEMBRES - VUE EN CARTES SUR TRÈS PETITS ÉCRANS */
     .members-table-view {
-        display: none;
+        display: none !important;
     }
     
     .members-card-view {
-        display: block;
+        display: block !important;
     }
     
     .member-card-photo {
@@ -702,7 +710,12 @@ html, body {
 
 /* Vue en cartes pour très petits écrans */
 .members-card-view {
-    display: none;
+    display: none !important;
+}
+
+/* Vue tableau visible par défaut sur desktop */
+.members-table-view {
+    display: block;
 }
 
 .member-card {
