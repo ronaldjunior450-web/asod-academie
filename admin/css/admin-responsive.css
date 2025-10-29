@@ -397,15 +397,21 @@ html, body {
     
     .members-table {
         font-size: var(--font-xs);
+        table-layout: fixed;
+        width: 100%;
     }
     
     .members-table th {
         font-size: 0.625rem; /* 10px */
         padding: var(--spacing-xs);
+        white-space: nowrap;
     }
     
     .members-table td {
         padding: var(--spacing-xs);
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     
     /* Masquer certaines colonnes sur mobile */
@@ -414,31 +420,60 @@ html, body {
         display: none;
     }
     
-    .members-table .col-nom,
+    /* Optimiser les largeurs des colonnes visibles */
+    .members-table .col-photo {
+        width: 50px;
+        min-width: 50px;
+    }
+    
+    .members-table .col-id {
+        width: 40px;
+        min-width: 40px;
+    }
+    
+    .members-table .col-nom {
+        width: 80px;
+        min-width: 80px;
+    }
+    
     .members-table .col-prenom {
-        max-width: 80px;
+        width: 80px;
+        min-width: 80px;
     }
     
     .members-table .col-equipe {
-        max-width: 100px;
+        width: 90px;
+        min-width: 90px;
+    }
+    
+    .members-table .col-statut {
+        width: 70px;
+        min-width: 70px;
     }
     
     .members-table .col-actions {
-        width: 100px;
-        min-width: 100px;
+        width: 80px;
+        min-width: 80px;
     }
     
     .btn-member-action {
-        padding: 2px;
-        font-size: 0.625rem;
-        min-width: 1.5rem;
-        height: 1.5rem;
+        padding: 1px;
+        font-size: 0.5rem;
+        min-width: 1.25rem;
+        height: 1.25rem;
+        margin: 0 0.5px;
     }
     
     .member-photo,
     .photo-placeholder {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    /* Forcer le tableau à tenir dans la largeur */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 }
 
@@ -588,33 +623,78 @@ html, body {
         padding: var(--spacing-xs) var(--spacing-sm);
     }
     
-    /* TABLEAU MEMBRES - VUE EN CARTES SUR TRÈS PETITS ÉCRANS */
+    /* TABLEAU MEMBRES - OPTIMISATION ULTRA COMPACTE (480px) */
     .members-table-view {
-        display: none !important;
-    }
-    
-    .members-card-view {
         display: block !important;
     }
     
-    .member-card-photo {
-        width: 45px;
-        height: 45px;
+    .members-card-view {
+        display: none !important;
     }
     
-    .member-card-details {
-        grid-template-columns: 1fr;
-        gap: 0;
+    .members-table {
+        font-size: 0.5rem; /* 8px */
     }
     
-    .member-card-actions {
-        flex-wrap: wrap;
-        gap: var(--spacing-xs);
+    .members-table th {
+        font-size: 0.5rem;
+        padding: 2px;
     }
     
-    .member-card-actions .btn {
-        flex: 1;
-        min-width: calc(50% - var(--spacing-xs));
+    .members-table td {
+        padding: 2px;
+    }
+    
+    /* Masquer encore plus de colonnes sur très petits écrans */
+    .members-table .col-date,
+    .members-table .col-age,
+    .members-table .col-equipe {
+        display: none;
+    }
+    
+    /* Largeurs ultra compactes */
+    .members-table .col-photo {
+        width: 35px;
+        min-width: 35px;
+    }
+    
+    .members-table .col-id {
+        width: 30px;
+        min-width: 30px;
+    }
+    
+    .members-table .col-nom {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .members-table .col-prenom {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .members-table .col-statut {
+        width: 50px;
+        min-width: 50px;
+    }
+    
+    .members-table .col-actions {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .btn-member-action {
+        padding: 1px;
+        font-size: 0.4rem;
+        min-width: 1rem;
+        height: 1rem;
+        margin: 0 0.25px;
+    }
+    
+    .member-photo,
+    .photo-placeholder {
+        width: 25px;
+        height: 25px;
     }
 }
 
