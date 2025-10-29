@@ -957,19 +957,19 @@ $stats = [
                         </h5>
                     </div>
             <div class="card-body">
-                        <div class="table-responsive">
-                    <table class="table table-hover">
+                        <div class="table-responsive members-table-view">
+                    <table class="table table-hover members-table">
                         <thead>
                             <tr>
-                                <th style="width: 80px; text-align: center; background-color: #f8f9fa; font-weight: bold;">📸 Photo</th>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Date de naissance</th>
-                                <th>Âge</th>
-                                <th>Équipe</th>
-                                <th>Statut</th>
-                                <th>Actions</th>
+                                <th class="col-photo" style="background-color: #f8f9fa; font-weight: bold;">📸 Photo</th>
+                                <th class="col-id">ID</th>
+                                <th class="col-nom">Nom</th>
+                                <th class="col-prenom">Prénom</th>
+                                <th class="col-date">Date de naissance</th>
+                                <th class="col-age">Âge</th>
+                                <th class="col-equipe">Équipe</th>
+                                <th class="col-statut">Statut</th>
+                                <th class="col-actions">Actions</th>
                             </tr>
                         </thead>
                                 <tbody>
@@ -1034,21 +1034,21 @@ $stats = [
                                     </td>
                                         <td>
                                         <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-outline-info btn-voir-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Voir">
+                                            <button class="btn btn-sm btn-outline-info btn-voir-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Voir">
                                                 <i class="fas fa-eye"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-outline-primary btn-modifier-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Modifier">
+                                            <button class="btn btn-sm btn-outline-primary btn-modifier-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Modifier">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-outline-warning btn-transfer-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Transférer">
+                                            <button class="btn btn-sm btn-outline-warning btn-transfer-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Transférer">
                                                 <i class="fas fa-exchange-alt"></i>
                                             </button>
                                             <?php if ($membre['statut'] === 'radie'): ?>
-                                                <button class="btn btn-sm btn-outline-success btn-restaurer-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Restaurer">
+                                                <button class="btn btn-sm btn-outline-success btn-restaurer-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Restaurer">
                                                     <i class="fas fa-user-check"></i>
                                                 </button>
                                             <?php else: ?>
-                                                <button class="btn btn-sm btn-outline-danger btn-renvoyer-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Radier">
+                                                <button class="btn btn-sm btn-outline-danger btn-renvoyer-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="garcons" title="Radier">
                                                     <i class="fas fa-user-times"></i>
                                                 </button>
                                             <?php endif; ?>
@@ -1058,6 +1058,103 @@ $stats = [
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                </div>
+                
+                <!-- Vue en cartes pour très petits écrans -->
+                <div class="members-card-view">
+                    <?php foreach ($membresGarcons as $membre): ?>
+                        <div class="member-card">
+                            <div class="member-card-header">
+                                <?php
+                                // Gestion de la photo
+                                $photoPath = $membre['photo'];
+                                $fullPhotoPath = '';
+                                $displayPath = '';
+                                
+                                if ($photoPath && strpos($photoPath, '/') === 0) {
+                                    $fullPhotoPath = dirname(__DIR__, 2) . $photoPath;
+                                    $displayPath = '..' . $photoPath;
+                                } elseif ($photoPath) {
+                                    $fullPhotoPath = dirname(__DIR__, 2) . '/images/membres/' . $photoPath;
+                                    $displayPath = '../images/membres/' . $photoPath;
+                                } else {
+                                    $fullPhotoPath = '';
+                                    $displayPath = '';
+                                }
+                                ?>
+                                
+                                <?php if ($membre['photo'] && file_exists($fullPhotoPath)): ?>
+                                    <img src="<?= htmlspecialchars($displayPath) ?>" alt="Photo de <?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?>" class="member-card-photo rounded-circle">
+                                <?php else: ?>
+                                    <div class="photo-placeholder member-card-photo rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-user text-white"></i>
+                                    </div>
+                                <?php endif; ?>
+                                
+                                <div class="member-card-info">
+                                    <h6><?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?></h6>
+                                    <small>ID: <?= $membre['id'] ?></small>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card-details">
+                                <div class="detail-item">
+                                    <span>Date de naissance:</span>
+                                    <span><?= date('d/m/Y', strtotime($membre['date_naissance'])) ?></span>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Âge:</span>
+                                    <span><?= $membre['age'] ?> ans</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Équipe:</span>
+                                    <span><?= htmlspecialchars($membre['equipe_nom'] ?? 'Non assignée') ?></span>
+                                </div>
+                                <div class="detail-item">
+                                    <span>Statut:</span>
+                                    <span class="badge bg-<?= $membre['statut'] === 'actif' ? 'success' : ($membre['statut'] === 'suspendu' ? 'warning' : 'danger') ?>">
+                                        <?= strtoupper($membre['statut']) ?>
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="member-card-actions">
+                                <button class="btn btn-sm btn-outline-info btn-member-action" 
+                                        data-membre-id="<?= $membre['id'] ?>" 
+                                        data-genre="garcons"
+                                        title="Voir">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-primary btn-member-action" 
+                                        data-membre-id="<?= $membre['id'] ?>" 
+                                        data-genre="garcons"
+                                        title="Modifier">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning btn-member-action" 
+                                        data-membre-id="<?= $membre['id'] ?>" 
+                                        data-genre="garcons"
+                                        title="Transférer">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </button>
+                                <?php if ($membre['statut'] === 'actif'): ?>
+                                    <button class="btn btn-sm btn-outline-danger btn-member-action" 
+                                            data-membre-id="<?= $membre['id'] ?>" 
+                                            data-genre="garcons"
+                                            title="Renvoyer">
+                                        <i class="fas fa-user-times"></i>
+                                    </button>
+                                <?php else: ?>
+                                    <button class="btn btn-sm btn-outline-success btn-member-action" 
+                                            data-membre-id="<?= $membre['id'] ?>" 
+                                            data-genre="garcons"
+                                            title="Restaurer">
+                                        <i class="fas fa-user-check"></i>
+                                    </button>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -1072,19 +1169,19 @@ $stats = [
                 </h5>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
+                <div class="table-responsive members-table-view">
+                    <table class="table table-hover members-table">
                         <thead>
                             <tr>
-                                <th style="width: 80px; text-align: center; background-color: #f8f9fa; font-weight: bold;">📸 Photo</th>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Date de naissance</th>
-                                <th>Âge</th>
-                                <th>Équipe</th>
-                                <th>Statut</th>
-                                <th>Actions</th>
+                                <th class="col-photo" style="background-color: #f8f9fa; font-weight: bold;">📸 Photo</th>
+                                <th class="col-id">ID</th>
+                                <th class="col-nom">Nom</th>
+                                <th class="col-prenom">Prénom</th>
+                                <th class="col-date">Date de naissance</th>
+                                <th class="col-age">Âge</th>
+                                <th class="col-equipe">Équipe</th>
+                                <th class="col-statut">Statut</th>
+                                <th class="col-actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1149,21 +1246,21 @@ $stats = [
                                     </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                            <button class="btn btn-sm btn-outline-info btn-voir-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Voir">
+                                            <button class="btn btn-sm btn-outline-info btn-voir-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Voir">
                                                 <i class="fas fa-eye"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-outline-primary btn-modifier-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Modifier">
+                                            <button class="btn btn-sm btn-outline-primary btn-modifier-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Modifier">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-outline-warning btn-transfer-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Transférer">
+                                            <button class="btn btn-sm btn-outline-warning btn-transfer-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Transférer">
                                                 <i class="fas fa-exchange-alt"></i>
                                             </button>
                                             <?php if ($membre['statut'] === 'radie'): ?>
-                                                <button class="btn btn-sm btn-outline-success btn-restaurer-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Restaurer">
+                                                <button class="btn btn-sm btn-outline-success btn-restaurer-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Restaurer">
                                                     <i class="fas fa-user-check"></i>
                                                 </button>
                                             <?php else: ?>
-                                                <button class="btn btn-sm btn-outline-danger btn-renvoyer-membre" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Radier">
+                                                <button class="btn btn-sm btn-outline-danger btn-renvoyer-membre btn-member-action" data-membre-id="<?= $membre['id'] ?>" data-genre="filles" title="Radier">
                                                     <i class="fas fa-user-times"></i>
                                                 </button>
                                             <?php endif; ?>
@@ -1173,6 +1270,103 @@ $stats = [
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                        </div>
+                        
+                        <!-- Vue en cartes pour très petits écrans -->
+                        <div class="members-card-view">
+                            <?php foreach ($membresFilles as $membre): ?>
+                                <div class="member-card">
+                                    <div class="member-card-header">
+                                        <?php
+                                        // Gestion de la photo
+                                        $photoPath = $membre['photo'];
+                                        $fullPhotoPath = '';
+                                        $displayPath = '';
+                                        
+                                        if ($photoPath && strpos($photoPath, '/') === 0) {
+                                            $fullPhotoPath = dirname(__DIR__, 2) . $photoPath;
+                                            $displayPath = '..' . $photoPath;
+                                        } elseif ($photoPath) {
+                                            $fullPhotoPath = dirname(__DIR__, 2) . '/images/membres/' . $photoPath;
+                                            $displayPath = '../images/membres/' . $photoPath;
+                                        } else {
+                                            $fullPhotoPath = '';
+                                            $displayPath = '';
+                                        }
+                                        ?>
+                                        
+                                        <?php if ($membre['photo'] && file_exists($fullPhotoPath)): ?>
+                                            <img src="<?= htmlspecialchars($displayPath) ?>" alt="Photo de <?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?>" class="member-card-photo rounded-circle">
+                                        <?php else: ?>
+                                            <div class="photo-placeholder member-card-photo rounded-circle d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-user text-white"></i>
+                                            </div>
+                                        <?php endif; ?>
+                                        
+                                        <div class="member-card-info">
+                                            <h6><?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?></h6>
+                                            <small>ID: <?= $membre['id'] ?></small>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="member-card-details">
+                                        <div class="detail-item">
+                                            <span>Date de naissance:</span>
+                                            <span><?= date('d/m/Y', strtotime($membre['date_naissance'])) ?></span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span>Âge:</span>
+                                            <span><?= $membre['age'] ?> ans</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span>Équipe:</span>
+                                            <span><?= htmlspecialchars($membre['equipe_nom'] ?? 'Non assignée') ?></span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span>Statut:</span>
+                                            <span class="badge bg-<?= $membre['statut'] === 'actif' ? 'success' : ($membre['statut'] === 'suspendu' ? 'warning' : 'danger') ?>">
+                                                <?= strtoupper($membre['statut']) ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="member-card-actions">
+                                        <button class="btn btn-sm btn-outline-info btn-member-action" 
+                                                data-membre-id="<?= $membre['id'] ?>" 
+                                                data-genre="filles"
+                                                title="Voir">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-primary btn-member-action" 
+                                                data-membre-id="<?= $membre['id'] ?>" 
+                                                data-genre="filles"
+                                                title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-warning btn-member-action" 
+                                                data-membre-id="<?= $membre['id'] ?>" 
+                                                data-genre="filles"
+                                                title="Transférer">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </button>
+                                        <?php if ($membre['statut'] === 'actif'): ?>
+                                            <button class="btn btn-sm btn-outline-danger btn-member-action" 
+                                                    data-membre-id="<?= $membre['id'] ?>" 
+                                                    data-genre="filles"
+                                                    title="Renvoyer">
+                                                <i class="fas fa-user-times"></i>
+                                            </button>
+                                        <?php else: ?>
+                                            <button class="btn btn-sm btn-outline-success btn-member-action" 
+                                                    data-membre-id="<?= $membre['id'] ?>" 
+                                                    data-genre="filles"
+                                                    title="Restaurer">
+                                                <i class="fas fa-user-check"></i>
+                                            </button>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
             </div>
         </div>

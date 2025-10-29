@@ -385,6 +385,53 @@ html, body {
     .modal-footer {
         padding: var(--spacing-sm) var(--spacing-md);
     }
+    
+    /* TABLEAU MEMBRES - OPTIMISATION MOBILE */
+    .members-table {
+        font-size: var(--font-xs);
+    }
+    
+    .members-table th {
+        font-size: 0.625rem; /* 10px */
+        padding: var(--spacing-xs);
+    }
+    
+    .members-table td {
+        padding: var(--spacing-xs);
+    }
+    
+    /* Masquer certaines colonnes sur mobile */
+    .members-table .col-date,
+    .members-table .col-age {
+        display: none;
+    }
+    
+    .members-table .col-nom,
+    .members-table .col-prenom {
+        max-width: 80px;
+    }
+    
+    .members-table .col-equipe {
+        max-width: 100px;
+    }
+    
+    .members-table .col-actions {
+        width: 100px;
+        min-width: 100px;
+    }
+    
+    .btn-member-action {
+        padding: 2px;
+        font-size: 0.625rem;
+        min-width: 1.5rem;
+        height: 1.5rem;
+    }
+    
+    .member-photo,
+    .photo-placeholder {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* Media queries pour très petits écrans */
@@ -532,6 +579,188 @@ html, body {
     .modal-footer {
         padding: var(--spacing-xs) var(--spacing-sm);
     }
+    
+    /* TABLEAU MEMBRES - VUE EN CARTES SUR TRÈS PETITS ÉCRANS */
+    .members-table-view {
+        display: none;
+    }
+    
+    .members-card-view {
+        display: block;
+    }
+    
+    .member-card-photo {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .member-card-details {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .member-card-actions {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+    
+    .member-card-actions .btn {
+        flex: 1;
+        min-width: calc(50% - var(--spacing-xs));
+    }
+}
+
+/* OPTIMISATION SPÉCIFIQUE TABLEAU MEMBRES */
+.members-table {
+    font-size: var(--font-sm);
+}
+
+.members-table th {
+    font-size: var(--font-xs);
+    padding: var(--spacing-sm) var(--spacing-xs);
+    white-space: nowrap;
+}
+
+.members-table td {
+    padding: var(--spacing-sm) var(--spacing-xs);
+    vertical-align: middle;
+}
+
+/* Colonnes spécifiques membres */
+.members-table .col-photo {
+    width: 60px;
+    text-align: center;
+}
+
+.members-table .col-id {
+    width: 50px;
+    font-weight: bold;
+}
+
+.members-table .col-nom {
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.members-table .col-prenom {
+    min-width: 100px;
+    max-width: 120px;
+}
+
+.members-table .col-date {
+    min-width: 80px;
+    max-width: 100px;
+}
+
+.members-table .col-age {
+    width: 50px;
+    text-align: center;
+}
+
+.members-table .col-equipe {
+    min-width: 100px;
+    max-width: 150px;
+}
+
+.members-table .col-statut {
+    width: 80px;
+    text-align: center;
+}
+
+.members-table .col-actions {
+    width: 120px;
+    min-width: 120px;
+}
+
+/* Photo des membres */
+.member-photo {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.photo-placeholder {
+    width: 40px;
+    height: 40px;
+    background: var(--admin-primary);
+    color: white;
+    font-size: var(--font-sm);
+}
+
+/* Boutons d'action membres */
+.btn-member-action {
+    padding: var(--spacing-xs);
+    font-size: var(--font-xs);
+    min-width: 1.75rem;
+    height: 1.75rem;
+    margin: 0 1px;
+}
+
+.btn-member-action i {
+    font-size: var(--font-xs);
+}
+
+/* Vue en cartes pour très petits écrans */
+.members-card-view {
+    display: none;
+}
+
+.member-card {
+    background: var(--admin-sidebar);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.member-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.member-card-photo {
+    width: 50px;
+    height: 50px;
+    margin-right: var(--spacing-sm);
+}
+
+.member-card-info h6 {
+    margin: 0;
+    font-size: var(--font-sm);
+    font-weight: 600;
+}
+
+.member-card-info small {
+    color: var(--admin-text-secondary);
+    font-size: var(--font-xs);
+}
+
+.member-card-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-xs);
+}
+
+.member-card-details .detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--admin-hover);
+}
+
+.member-card-actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: flex-end;
+}
+
+.member-card-actions .btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-xs);
 }
 
 /* Amélioration de l'accessibilité */
