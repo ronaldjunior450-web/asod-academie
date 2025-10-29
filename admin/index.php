@@ -325,11 +325,31 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
             100% { transform: rotate(360deg); }
         }
 
+        /* Overlay pour fermer le menu mobile */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+            opacity: 1;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .gmail-sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 999;
             }
 
             .gmail-sidebar.open {
@@ -391,6 +411,9 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
             </a>
         </div>
     </header>
+
+    <!-- Overlay pour fermer le menu mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
     <!-- Sidebar Gmail Style -->
     <nav class="gmail-sidebar" id="gmailSidebar">
@@ -912,7 +935,37 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
         // Toggle sidebar mobile
         function toggleSidebar() {
             const sidebar = document.getElementById('gmailSidebar');
-            sidebar.classList.toggle('open');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            if (sidebar.classList.contains('open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        }
+        
+        // Ouvrir le sidebar
+        function openSidebar() {
+            const sidebar = document.getElementById('gmailSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.add('open');
+            overlay.classList.add('show');
+            
+            // Empêcher le scroll du body
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Fermer le sidebar
+        function closeSidebar() {
+            const sidebar = document.getElementById('gmailSidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            
+            // Restaurer le scroll du body
+            document.body.style.overflow = '';
         }
         
         // Initialiser la page
@@ -929,6 +982,11 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
                     item.addEventListener('click', function(e) {
                         e.preventDefault();
                         loadSection(sectionId);
+                        
+                        // Fermer le menu mobile après clic
+                        if (window.innerWidth <= 768) {
+                            closeSidebar();
+                        }
                     });
                 }
             });
@@ -937,6 +995,13 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
             window.addEventListener('popstate', function(event) {
                 if (event.state && event.state.section) {
                     loadSection(event.state.section);
+                }
+            });
+            
+            // Fermer le menu avec la touche Échap
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeSidebar();
                 }
             });
             
