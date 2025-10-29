@@ -26,7 +26,8 @@ $actionMap = [
     'edit' => 'modifier', 
     'delete' => 'supprimer',
     'add' => 'ajouter',
-    'list' => 'liste'
+    'list' => 'liste',
+    'liste' => 'liste'  // Ajout pour compatibilité
 ];
 $action = $actionMap[$action] ?? $action;
 
