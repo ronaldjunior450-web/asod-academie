@@ -579,7 +579,7 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
             },
             'contact_info': {
                 title: 'Infos Contact',
-                url: 'mvc_router.php?controller=ContactInfo&action=liste'
+                url: 'sections/contact_info.php'
             },
             'transferts': {
                 title: 'Transferts',
