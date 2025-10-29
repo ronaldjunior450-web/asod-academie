@@ -386,7 +386,7 @@ html, body {
         padding: var(--spacing-sm) var(--spacing-md);
     }
     
-    /* TABLEAU MEMBRES - OPTIMISATION MOBILE */
+    /* TABLEAU MEMBRES - OPTIMISATION MOBILE (768px) */
     .members-table-view {
         display: block !important;
     }
@@ -708,14 +708,40 @@ html, body {
     font-size: var(--font-xs);
 }
 
-/* Vue en cartes pour très petits écrans */
+/* Vue en cartes masquée par défaut sur desktop */
 .members-card-view {
     display: none !important;
 }
 
 /* Vue tableau visible par défaut sur desktop */
 .members-table-view {
-    display: block;
+    display: block !important;
+}
+
+/* Règles spécifiques pour desktop - forcer l'affichage correct */
+@media (min-width: 769px) {
+    .members-table-view {
+        display: block !important;
+    }
+    
+    .members-card-view {
+        display: none !important;
+    }
+}
+
+/* Règles très spécifiques pour forcer l'affichage correct */
+.card-body .members-card-view {
+    display: none !important;
+}
+
+@media (min-width: 769px) {
+    .card-body .members-card-view {
+        display: none !important;
+    }
+    
+    .card-body .members-table-view {
+        display: block !important;
+    }
 }
 
 .member-card {
