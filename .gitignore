@@ -25,15 +25,8 @@ debug.log
 # FICHIERS D'UPLOAD ET MÉDIAS
 # ===========================================
 uploads/
-images/players/
-images/membres/
-images/bureau/
-images/entraineurs/
-images/news/
-images/actualites/
-images/galerie/
-images/teams/
-images/uploads/
+# Inclure les images publiques dans le dépôt pour l'affichage en prod
+# (les sous-dossiers images ne sont plus exclus)
 
 # Garder les dossiers vides
 !uploads/.gitkeep
