@@ -144,6 +144,18 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
             overflow-y: auto;
             z-index: 999;
         }
+        
+        @media (max-width: 768px) {
+            .gmail-sidebar {
+                height: calc(100vh - 56px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gmail-sidebar {
+                height: calc(100vh - 48px);
+            }
+        }
 
         .gmail-nav {
             padding: 8px 0;
@@ -346,10 +358,28 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
 
         /* Responsive */
         @media (max-width: 768px) {
+            .gmail-header {
+                height: 56px;
+                padding: 0 16px;
+            }
+            
+            .gmail-logo h1 {
+                font-size: 18px;
+            }
+            
+            .gmail-logo img {
+                height: 32px;
+            }
+            
+            .gmail-user span {
+                display: none;
+            }
+            
             .gmail-sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
                 z-index: 999;
+                top: 56px;
             }
 
             .gmail-sidebar.open {
@@ -358,10 +388,43 @@ $admin_role = $_SESSION['admin_role'] ?? 'admin';
 
             .gmail-main {
                 margin-left: 0;
+                margin-top: 56px;
+            }
+            
+            .gmail-content {
+                padding: 16px;
             }
 
             .gmail-search {
                 display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gmail-header {
+                height: 48px;
+                padding: 0 8px;
+            }
+            
+            .gmail-logo h1 {
+                font-size: 16px;
+                margin-left: 4px;
+            }
+            
+            .gmail-logo img {
+                height: 28px;
+            }
+            
+            .gmail-main {
+                margin-top: 48px;
+            }
+            
+            .gmail-sidebar {
+                top: 48px;
+            }
+            
+            .gmail-content {
+                padding: 8px;
             }
         }
 

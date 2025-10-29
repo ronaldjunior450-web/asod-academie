@@ -186,12 +186,81 @@ html, body {
 
 /* Media queries pour mobile */
 @media (max-width: 768px) {
-    /* Réduction des espacements */
-    .gmail-card-body {
-        padding: var(--spacing-md);
+    /* HEADER OPTIMISÉ */
+    .gmail-header {
+        height: 56px; /* Réduit de 64px à 56px */
+        padding: 0 var(--spacing-md);
     }
     
-    /* Stats cards en grille 2x2 sur mobile */
+    .gmail-logo h1 {
+        font-size: var(--font-lg);
+        margin-left: var(--spacing-sm);
+    }
+    
+    .gmail-logo img {
+        height: 32px; /* Réduit de 40px */
+    }
+    
+    .gmail-user span {
+        display: none; /* Masquer le nom sur mobile */
+    }
+    
+    .gmail-user .gmail-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-xs);
+    }
+    
+    /* SIDEBAR OPTIMISÉE */
+    .gmail-sidebar {
+        width: 280px; /* Légèrement réduite */
+        top: 56px; /* Aligné avec le header réduit */
+    }
+    
+    .gmail-nav-item {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-sm);
+    }
+    
+    .gmail-nav-item i {
+        font-size: var(--font-base);
+        width: 1.25rem;
+    }
+    
+    /* CONTENU PRINCIPAL OPTIMISÉ */
+    .gmail-main {
+        margin-top: 56px; /* Aligné avec le header réduit */
+    }
+    
+    .gmail-content {
+        padding: var(--spacing-md); /* Réduit de 24px à 16px */
+    }
+    
+    /* BREADCRUMB OPTIMISÉ */
+    .gmail-breadcrumb {
+        margin-bottom: var(--spacing-md); /* Réduit de 24px */
+        font-size: var(--font-xs);
+    }
+    
+    /* CARDS OPTIMISÉES */
+    .gmail-card {
+        margin-bottom: var(--spacing-md); /* Réduit de 24px */
+        border-radius: var(--spacing-xs);
+    }
+    
+    .gmail-card-body {
+        padding: var(--spacing-md); /* Réduit de 24px à 16px */
+    }
+    
+    .gmail-card-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .gmail-card-title {
+        font-size: var(--font-lg);
+        margin-bottom: 0;
+    }
+    
+    /* STATS CARDS EN GRILLE 2x2 */
     .stats-card {
         margin-bottom: var(--spacing-sm);
     }
@@ -200,6 +269,8 @@ html, body {
         flex: 0 0 50%;
         max-width: 50%;
         margin-bottom: var(--spacing-sm);
+        padding-left: calc(0.5 * var(--spacing-sm));
+        padding-right: calc(0.5 * var(--spacing-sm));
     }
     
     .stats-icon {
@@ -208,7 +279,18 @@ html, body {
         margin-right: var(--spacing-sm);
     }
     
-    /* Tableaux optimisés pour mobile */
+    /* BOUTONS OPTIMISÉS */
+    .gmail-btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-sm);
+        border-radius: var(--spacing-xs);
+    }
+    
+    .btn-group {
+        gap: var(--spacing-xs);
+    }
+    
+    /* TABLEAUX OPTIMISÉS */
     .table {
         font-size: var(--font-xs);
     }
@@ -231,7 +313,29 @@ html, body {
         height: 2.5rem;
     }
     
-    /* Grilles adaptées */
+    /* FORMULAIRES OPTIMISÉS */
+    .form-control {
+        font-size: var(--font-base);
+        padding: var(--spacing-sm) var(--spacing-md);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .form-label {
+        font-size: var(--font-xs);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .form-row {
+        margin-left: calc(-0.5 * var(--spacing-sm));
+        margin-right: calc(-0.5 * var(--spacing-sm));
+    }
+    
+    .form-row > * {
+        padding-left: calc(0.5 * var(--spacing-sm));
+        padding-right: calc(0.5 * var(--spacing-sm));
+    }
+    
+    /* GRILLES ADAPTÉES */
     .galerie-grid {
         grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
         gap: var(--spacing-md);
@@ -241,13 +345,7 @@ html, body {
         height: 10rem; /* 160px */
     }
     
-    /* Formulaires */
-    .form-control {
-        font-size: var(--font-base);
-        padding: var(--spacing-md);
-    }
-    
-    /* Espacement des sections */
+    /* ESPACEMENT DES SECTIONS */
     .row {
         margin-left: calc(-0.5 * var(--spacing-md));
         margin-right: calc(-0.5 * var(--spacing-md));
@@ -261,11 +359,84 @@ html, body {
         padding-left: calc(0.5 * var(--spacing-md));
         padding-right: calc(0.5 * var(--spacing-md));
     }
+    
+    /* ALERTES ET MESSAGES */
+    .alert {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-sm);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* BADGES */
+    .badge {
+        font-size: var(--font-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    /* MODAL OPTIMISÉ */
+    .modal-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .modal-body {
+        padding: var(--spacing-md);
+    }
+    
+    .modal-footer {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
 }
 
 /* Media queries pour très petits écrans */
 @media (max-width: 480px) {
-    /* Grilles encore plus compactes */
+    /* HEADER ENCORE PLUS COMPACT */
+    .gmail-header {
+        height: 48px;
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .gmail-logo h1 {
+        font-size: var(--font-base);
+        margin-left: var(--spacing-xs);
+    }
+    
+    .gmail-logo img {
+        height: 28px;
+    }
+    
+    .gmail-main {
+        margin-top: 48px;
+    }
+    
+    .gmail-sidebar {
+        top: 48px;
+        height: calc(100vh - 48px);
+    }
+    
+    /* CONTENU ULTRA COMPACT */
+    .gmail-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .gmail-card {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .gmail-card-body {
+        padding: var(--spacing-sm);
+    }
+    
+    .gmail-card-header {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    /* BREADCRUMB MINIMAL */
+    .gmail-breadcrumb {
+        margin-bottom: var(--spacing-sm);
+        font-size: 0.625rem; /* 10px */
+    }
+    
+    /* GRilles encore plus compactes */
     .galerie-grid {
         grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
         gap: var(--spacing-sm);
@@ -275,7 +446,7 @@ html, body {
         height: 8rem; /* 128px */
     }
     
-    /* Stats en grille 2x2 compacte */
+    /* STATS EN GRILLE 2x2 ULTRA COMPACTE */
     .stats-card .d-flex {
         flex-direction: column;
         text-align: center;
@@ -297,10 +468,69 @@ html, body {
         font-size: var(--font-xs);
     }
     
-    /* Boutons pleine largeur */
+    .row .col-md-3 {
+        padding-left: calc(0.5 * var(--spacing-xs));
+        padding-right: calc(0.5 * var(--spacing-xs));
+    }
+    
+    /* BOUTONS OPTIMISÉS */
+    .gmail-btn {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-xs);
+    }
+    
     .btn-action {
-        width: 100%;
+        min-width: 2.25rem;
+        height: 2.25rem;
+        padding: var(--spacing-xs);
+    }
+    
+    /* FORMULAIRES ULTRA COMPACTS */
+    .form-control {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-sm);
         margin-bottom: var(--spacing-xs);
+    }
+    
+    .form-label {
+        font-size: 0.625rem; /* 10px */
+        margin-bottom: 0.125rem; /* 2px */
+    }
+    
+    /* TABLEAUX ULTRA COMPACTS */
+    .table {
+        font-size: 0.625rem; /* 10px */
+    }
+    
+    .table th,
+    .table td {
+        padding: var(--spacing-xs);
+    }
+    
+    /* ALERTES MINIMALES */
+    .alert {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-xs);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* BADGES MINIMALES */
+    .badge {
+        font-size: 0.625rem; /* 10px */
+        padding: 0.125rem var(--spacing-xs); /* 2px 4px */
+    }
+    
+    /* MODAL ULTRA COMPACT */
+    .modal-header {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .modal-body {
+        padding: var(--spacing-sm);
+    }
+    
+    .modal-footer {
+        padding: var(--spacing-xs) var(--spacing-sm);
     }
 }
 
