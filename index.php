@@ -157,7 +157,7 @@ try {
         .nav a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;  /* Plus gras */
             transition: var(--transition);
             padding: 0.8rem 1.2rem;
             border-radius: 8px;
@@ -643,9 +643,14 @@ try {
             }
         
             .nav-group-title {
-                font-size: var(--font-lg);  /* 1.125rem */
-                padding: var(--spacing-md) var(--spacing-xl);  /* 1rem 2rem */
+                font-size: var(--font-xl);  /* 1.25rem - plus grand */
+                padding: var(--spacing-lg) var(--spacing-xl);  /* 1.5rem 2rem - plus d'espace */
                 margin-bottom: var(--spacing-md);  /* 1rem */
+                color: var(--white);
+                font-weight: 700;  /* Plus gras */
+                text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.3);  /* Ombre pour contraste */
+                background: rgba(255, 255, 255, 0.1);  /* Fond légèrement transparent */
+                border-radius: var(--border-radius);
             }
             
             .nav-submenu {
@@ -662,15 +667,32 @@ try {
             
             .nav-submenu a {
                 color: var(--white);
-                padding: var(--spacing-sm) 0;  /* 0.5rem 0 */
-                font-size: var(--font-base);  /* 1rem */
+                padding: var(--spacing-md) 0;  /* 1rem 0 - plus d'espace vertical */
+                font-size: var(--font-lg);  /* 1.125rem - plus grand */
+                font-weight: 600;  /* Plus gras */
+                text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.3);  /* Ombre pour contraste */
                 border-left: none;
                 display: block;
+                background: rgba(255, 255, 255, 0.05);  /* Fond très léger */
+                margin: var(--spacing-xs) 0;  /* Petit espace entre les liens */
+                border-radius: var(--border-radius);
+                transition: var(--transition);
             }
             
-            .nav-submenu a:hover {
-                background: transparent;
+            /* Amélioration de la lisibilité du menu mobile */
+            .nav a {
+                font-size: var(--font-xl);  /* 1.25rem - plus grand sur mobile */
+                font-weight: 700;  /* Plus gras sur mobile */
+                text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);  /* Ombre plus forte */
+                background: rgba(255, 255, 255, 0.1);  /* Fond plus visible */
+                margin: var(--spacing-xs) 0;  /* Espace entre les liens */
+                padding: var(--spacing-lg) var(--spacing-xl);  /* Plus d'espace */
+            }
+            
+            .nav a:hover {
+                background: rgba(255, 255, 255, 0.2);  /* Fond plus visible au survol */
                 color: var(--accent-yellow);
+                transform: translateX(0.25rem);  /* Animation horizontale */
             }
             
             .hero h1 {
