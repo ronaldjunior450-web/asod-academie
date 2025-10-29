@@ -4,6 +4,7 @@
 # FICHIERS DE CONFIGURATION SENSIBLES
 # ===========================================
 php/config_local.php
+php/config_infinity.php
 php/smtp_config.php
 php/email_production.php
 php/email_config.php
@@ -37,6 +38,10 @@ images/uploads/
 # Garder les dossiers vides
 !uploads/.gitkeep
 !images/.gitkeep
+
+# Garder seulement les images publiques nécessaires
+!images/logo.png
+!images/tactique/
 
 # ===========================================
 # FICHIERS DE SESSION ET CACHE
