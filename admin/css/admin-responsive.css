@@ -1,0 +1,308 @@
+/* Styles responsive communs pour l'administration ASOD ACADEMIE */
+
+/* Variables CSS pour l'admin */
+:root {
+    --admin-primary: #1a73e8;
+    --admin-secondary: #5f6368;
+    --admin-background: #f8f9fa;
+    --admin-sidebar: #ffffff;
+    --admin-border: #dadce0;
+    --admin-hover: #f1f3f4;
+    --admin-text: #202124;
+    --admin-text-secondary: #5f6368;
+    
+    /* Unités relatives pour responsive */
+    --spacing-xs: 0.25rem;   /* 4px */
+    --spacing-sm: 0.5rem;    /* 8px */
+    --spacing-md: 1rem;      /* 16px */
+    --spacing-lg: 1.5rem;    /* 24px */
+    --spacing-xl: 2rem;      /* 32px */
+    --spacing-xxl: 3rem;     /* 48px */
+    
+    /* Tailles de police relatives */
+    --font-xs: 0.75rem;      /* 12px */
+    --font-sm: 0.875rem;     /* 14px */
+    --font-base: 1rem;       /* 16px */
+    --font-lg: 1.125rem;     /* 18px */
+    --font-xl: 1.25rem;      /* 20px */
+    --font-2xl: 1.5rem;      /* 24px */
+    --font-3xl: 2rem;        /* 32px */
+}
+
+/* Base responsive */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Optimisation des tableaux pour mobile */
+.table-responsive {
+    border-radius: var(--spacing-sm);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.table {
+    margin-bottom: 0;
+    font-size: var(--font-sm);
+}
+
+.table th {
+    font-weight: 600;
+    font-size: var(--font-sm);
+    padding: var(--spacing-md) var(--spacing-sm);
+    border-bottom: 2px solid var(--admin-border);
+    background-color: var(--admin-hover);
+}
+
+.table td {
+    padding: var(--spacing-md) var(--spacing-sm);
+    vertical-align: middle;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+/* Boutons d'action optimisés pour mobile */
+.btn-action {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-xs);
+    border-radius: var(--spacing-xs);
+    min-width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action i {
+    font-size: var(--font-sm);
+}
+
+/* Cards responsive */
+.gmail-card {
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--spacing-sm);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    overflow: hidden;
+}
+
+.gmail-card-body {
+    padding: var(--spacing-lg);
+}
+
+/* Stats cards responsive */
+.stats-card {
+    margin-bottom: var(--spacing-md);
+}
+
+.stats-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-md);
+}
+
+.stats-icon.primary {
+    background-color: rgba(26, 115, 232, 0.1);
+    color: var(--admin-primary);
+}
+
+.stats-icon.success {
+    background-color: rgba(52, 168, 83, 0.1);
+    color: #34a853;
+}
+
+.stats-icon.warning {
+    background-color: rgba(251, 188, 4, 0.1);
+    color: #fbbc04;
+}
+
+.stats-icon.danger {
+    background-color: rgba(234, 67, 53, 0.1);
+    color: #ea4335;
+}
+
+/* Formulaires responsive */
+.form-control {
+    font-size: var(--font-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--spacing-xs);
+}
+
+.form-label {
+    font-weight: 500;
+    font-size: var(--font-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Grilles responsive */
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: var(--spacing-lg);
+    row-gap: var(--spacing-lg);
+}
+
+/* Images responsives */
+.galerie-thumb {
+    width: 100%;
+    height: 12.5rem; /* 200px */
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Actions sur images */
+.galerie-actions {
+    position: absolute;
+    right: var(--spacing-sm);
+    bottom: var(--spacing-sm);
+    display: flex;
+    gap: var(--spacing-xs);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.thumb-wrapper:hover .galerie-actions {
+    opacity: 1;
+}
+
+.galerie-actions .btn {
+    padding: var(--spacing-xs);
+    border-radius: var(--spacing-xs);
+    backdrop-filter: blur(0.125rem);
+    min-width: 2rem;
+    height: 2rem;
+}
+
+/* Badges responsive */
+.galerie-badge {
+    position: absolute;
+    left: var(--spacing-sm);
+    bottom: var(--spacing-sm);
+    font-size: var(--font-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+/* Media queries pour mobile */
+@media (max-width: 768px) {
+    /* Réduction des espacements */
+    .gmail-card-body {
+        padding: var(--spacing-md);
+    }
+    
+    .stats-card {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .stats-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: var(--spacing-sm);
+    }
+    
+    /* Tableaux optimisés pour mobile */
+    .table {
+        font-size: var(--font-xs);
+    }
+    
+    .table th,
+    .table td {
+        padding: var(--spacing-sm) var(--spacing-xs);
+    }
+    
+    /* Masquer certaines colonnes sur mobile */
+    .table .d-none-mobile {
+        display: none !important;
+    }
+    
+    /* Boutons d'action plus grands sur mobile */
+    .btn-action {
+        padding: var(--spacing-sm);
+        font-size: var(--font-sm);
+        min-width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    /* Grilles adaptées */
+    .galerie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .galerie-thumb {
+        height: 10rem; /* 160px */
+    }
+    
+    /* Formulaires */
+    .form-control {
+        font-size: var(--font-base);
+        padding: var(--spacing-md);
+    }
+    
+    /* Espacement des sections */
+    .row {
+        margin-left: calc(-0.5 * var(--spacing-md));
+        margin-right: calc(-0.5 * var(--spacing-md));
+    }
+    
+    .col-md-3,
+    .col-md-4,
+    .col-md-6,
+    .col-md-8,
+    .col-md-12 {
+        padding-left: calc(0.5 * var(--spacing-md));
+        padding-right: calc(0.5 * var(--spacing-md));
+    }
+}
+
+/* Media queries pour très petits écrans */
+@media (max-width: 480px) {
+    /* Grilles encore plus compactes */
+    .galerie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        gap: var(--spacing-sm);
+    }
+    
+    .galerie-thumb {
+        height: 8rem; /* 128px */
+    }
+    
+    /* Stats en colonne unique */
+    .stats-card .d-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stats-icon {
+        margin-right: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Boutons pleine largeur */
+    .btn-action {
+        width: 100%;
+        margin-bottom: var(--spacing-xs);
+    }
+}
+
+/* Amélioration de l'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Mode sombre (optionnel) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --admin-background: #1a1a1a;
+        --admin-sidebar: #2d2d2d;
+        --admin-border: #404040;
+        --admin-hover: #3a3a3a;
+        --admin-text: #ffffff;
+        --admin-text-secondary: #b0b0b0;
+    }
+}

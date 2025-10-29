@@ -416,12 +416,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         <thead>
                             <tr>
                                 <th>Nom</th>
-                                <th>Email</th>
-                                <th>Téléphone</th>
-                                <th>Date naissance</th>
+                                <th class="d-none-mobile">Email</th>
+                                <th class="d-none-mobile">Téléphone</th>
+                                <th class="d-none-mobile">Date naissance</th>
                                 <th>Genre</th>
-                                <th>Équipe</th>
-                                <th>Date inscription</th>
+                                <th class="d-none-mobile">Équipe</th>
+                                <th class="d-none-mobile">Date inscription</th>
                                 <th>Statut</th>
                                 <th>Actions</th>
                             </tr>
@@ -431,16 +431,22 @@ document.addEventListener('DOMContentLoaded', function() {
                             <tr>
                                 <td>
                                     <strong><?= htmlspecialchars($inscription['prenom'] . ' ' . $inscription['nom']) ?></strong>
+                                    <div class="d-block d-md-none text-muted small">
+                                        <?= htmlspecialchars($inscription['email']) ?><br>
+                                        <?= htmlspecialchars($inscription['telephone']) ?><br>
+                                        <?= date('d/m/Y', strtotime($inscription['date_naissance'])) ?><br>
+                                        <?= htmlspecialchars($inscription['equipe_nom'] ?? 'Non spécifiée') ?>
+                                    </div>
                                 </td>
-                                <td><?= htmlspecialchars($inscription['email']) ?></td>
-                                <td><?= htmlspecialchars($inscription['telephone']) ?></td>
-                                <td><?= date('d/m/Y', strtotime($inscription['date_naissance'])) ?></td>
+                                <td class="d-none-mobile"><?= htmlspecialchars($inscription['email']) ?></td>
+                                <td class="d-none-mobile"><?= htmlspecialchars($inscription['telephone']) ?></td>
+                                <td class="d-none-mobile"><?= date('d/m/Y', strtotime($inscription['date_naissance'])) ?></td>
                                 <td>
                                     <i class="fas fa-<?= $inscription['genre'] === 'garcon' ? 'male' : 'female' ?> me-1"></i>
                                     <?= ucfirst($inscription['genre']) ?>
                                 </td>
-                                <td><?= htmlspecialchars($inscription['equipe_nom'] ?? 'Non spécifiée') ?></td>
-                                <td><?= date('d/m/Y H:i', strtotime($inscription['date_inscription'])) ?></td>
+                                <td class="d-none-mobile"><?= htmlspecialchars($inscription['equipe_nom'] ?? 'Non spécifiée') ?></td>
+                                <td class="d-none-mobile"><?= date('d/m/Y H:i', strtotime($inscription['date_inscription'])) ?></td>
                                 <td>
                                     <span class="badge bg-<?= $inscription['statut'] === 'valide' ? 'success' : ($inscription['statut'] === 'rejete' ? 'danger' : 'warning') ?>">
                                         <?= ucfirst($inscription['statut']) ?>
@@ -448,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <button class="btn btn-sm btn-outline-info" 
+                                        <button class="btn btn-sm btn-outline-info btn-action" 
                                                 onclick="loadSection('inscriptions', 'view', <?= $inscription['id'] ?>)" 
                                                 title="Voir">
                                             <i class="fas fa-eye"></i>

@@ -257,15 +257,98 @@ if (empty($images_galerie)) {
 ?>
 
 <style>
-/* Galerie - styles d'affichage harmonisés */
-.galerie-grid { row-gap: 1.25rem; }
-.thumb-wrapper { position: relative; border-top-left-radius: .5rem; border-top-right-radius: .5rem; overflow: hidden; background: #f8f9fa; }
-.galerie-thumb { display: block; width: 100%; height: 250px; object-fit: cover; object-position: center top; }
-.galerie-actions { position: absolute; right: .5rem; bottom: .5rem; display: flex; gap: .5rem; }
-.galerie-actions .btn { padding: .25rem .5rem; border-radius: .375rem; backdrop-filter: blur(2px); }
-.galerie-badge { position: absolute; left: .5rem; bottom: .5rem; }
+/* Galerie - styles d'affichage harmonisés avec responsive */
+.galerie-grid { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: var(--spacing-lg, 1.5rem);
+    row-gap: var(--spacing-lg, 1.5rem);
+}
+
+.thumb-wrapper { 
+    position: relative; 
+    border-top-left-radius: var(--spacing-sm, 0.5rem); 
+    border-top-right-radius: var(--spacing-sm, 0.5rem); 
+    overflow: hidden; 
+    background: #f8f9fa; 
+}
+
+.galerie-thumb { 
+    display: block; 
+    width: 100%; 
+    height: 12.5rem; /* 200px - réduit pour mobile */
+    object-fit: cover; 
+    object-position: center top; 
+}
+
+.galerie-actions { 
+    position: absolute; 
+    right: var(--spacing-sm, 0.5rem); 
+    bottom: var(--spacing-sm, 0.5rem); 
+    display: flex; 
+    gap: var(--spacing-xs, 0.25rem);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.thumb-wrapper:hover .galerie-actions {
+    opacity: 1;
+}
+
+.galerie-actions .btn { 
+    padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem); 
+    border-radius: var(--spacing-xs, 0.375rem); 
+    backdrop-filter: blur(2px);
+    min-width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.galerie-badge { 
+    position: absolute; 
+    left: var(--spacing-sm, 0.5rem); 
+    bottom: var(--spacing-sm, 0.5rem);
+    font-size: var(--font-xs, 0.75rem);
+    padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem);
+}
+
 .galerie-card .gmail-card-body { padding: 0; }
-.galerie-meta { padding: .75rem; }
+.galerie-meta { padding: var(--spacing-md, 0.75rem); }
+
+/* Responsive pour galerie */
+@media (max-width: 768px) {
+    .galerie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        gap: var(--spacing-md, 1rem);
+    }
+    
+    .galerie-thumb {
+        height: 10rem; /* 160px */
+    }
+    
+    .galerie-actions {
+        opacity: 1; /* Toujours visible sur mobile */
+    }
+    
+    .galerie-actions .btn {
+        min-width: 2.5rem;
+        height: 2.5rem;
+        padding: var(--spacing-sm, 0.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .galerie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        gap: var(--spacing-sm, 0.5rem);
+    }
+    
+    .galerie-thumb {
+        height: 8rem; /* 128px */
+    }
+}
 </style>
 
 <!-- Section des statistiques -->
