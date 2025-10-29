@@ -191,7 +191,14 @@ html, body {
         padding: var(--spacing-md);
     }
     
+    /* Stats cards en grille 2x2 sur mobile */
     .stats-card {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .row .col-md-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
         margin-bottom: var(--spacing-sm);
     }
     
@@ -268,7 +275,7 @@ html, body {
         height: 8rem; /* 128px */
     }
     
-    /* Stats en colonne unique */
+    /* Stats en grille 2x2 compacte */
     .stats-card .d-flex {
         flex-direction: column;
         text-align: center;
@@ -276,7 +283,18 @@ html, body {
     
     .stats-icon {
         margin-right: 0;
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: var(--spacing-xs);
+        width: 2rem;
+        height: 2rem;
+    }
+    
+    .stats-card h3 {
+        font-size: var(--font-lg);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .stats-card small {
+        font-size: var(--font-xs);
     }
     
     /* Boutons pleine largeur */
