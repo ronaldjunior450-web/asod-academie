@@ -84,6 +84,11 @@ try {
             box-sizing: border-box;
         }
         
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
@@ -616,22 +621,22 @@ try {
             .nav {
                 position: fixed;
                 top: 0;
-                left: -100%;
+                left: 0;
                 width: 100%;
                 height: 100vh;
                 background: var(--primary-blue);
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                transition: left 0.3s ease;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
                 z-index: 1000;
                 overflow-y: auto;
-                display: none;
+                display: flex;
             }
             
             .nav.active {
-                left: 0;
-                display: flex;
+                transform: translateX(0);
             }
             
             .nav-list {
