@@ -5,9 +5,49 @@
 
 // Détection automatique de l'environnement
 if (strpos($_SERVER['HTTP_HOST'], 'infinityfreeapp.com') !== false || 
-    strpos($_SERVER['HTTP_HOST'], 'infinityfree.com') !== false) {
+    strpos($_SERVER['HTTP_HOST'], 'infinityfree.com') !== false ||
+    strpos($_SERVER['HTTP_HOST'], 'asodacademie.infinityfree.me') !== false) {
     // Environnement InfinityFree - Production
-    require_once __DIR__ . '/config_infinity.php';
+    define('DB_HOST', 'sql301.infinityfree.com');
+    define('DB_NAME', 'if0_39987344_asod_academie');
+    define('DB_USER', 'if0_39987344');
+    define('DB_PASS', 'lnGWxSJQ7dwQE3S');
+    define('DB_CHARSET', 'utf8mb4');
+    define('BASE_URL', 'https://asodacademie.infinityfree.me');
+    define('ENVIRONMENT', 'production');
+    define('DEBUG_MODE', false);
+    
+    // Configuration des emails - INFINITYFREE
+    define('SMTP_HOST', 'smtp.gmail.com');
+    define('SMTP_PORT', 587);
+    define('SMTP_USERNAME', 'asodacademie@gmail.com');
+    define('SMTP_PASSWORD', 'VOTRE_MOT_DE_PASSE_APP_GMAIL');
+    define('USE_SMTP', true);
+    define('SMTP_FROM_EMAIL', 'noreply@asodfc.com');
+    define('SMTP_FROM_NAME', 'ASOD ACADEMIE');
+    
+    // Configuration des uploads
+    define('UPLOAD_MAX_SIZE', 5 * 1024 * 1024);
+    define('UPLOAD_ALLOWED_TYPES', ['jpg', 'jpeg', 'png', 'gif', 'pdf', 'doc', 'docx']);
+    define('UPLOAD_PATH', 'uploads/');
+    define('UPLOAD_IMAGES_PATH', 'uploads/images/');
+    define('UPLOAD_DOCUMENTS_PATH', 'uploads/documents/');
+    
+    // Configuration de la session pour la production
+    ini_set('session.cookie_httponly', 1);
+    ini_set('session.use_only_cookies', 1);
+    ini_set('session.cookie_secure', 1);
+    
+    // Configuration des erreurs pour la production
+    error_reporting(0);
+    ini_set('display_errors', 0);
+    ini_set('log_errors', 1);
+    
+    // Headers de sécurité
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: DENY');
+    header('X-XSS-Protection: 1; mode=block');
+    
     return;
 }
 
