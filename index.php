@@ -583,7 +583,7 @@ try {
         /* Responsive */
         @media (max-width: 768px) {
             .mobile-menu-toggle {
-            display: flex;
+                display: flex;
             }
             
             .nav {
@@ -595,20 +595,25 @@ try {
                 background: var(--primary-blue);
                 flex-direction: column;
                 justify-content: center;
-            align-items: center;
+                align-items: center;
                 transition: left 0.3s ease;
                 z-index: 1000;
+                overflow-y: auto;
+                display: none;
             }
             
             .nav.active {
                 left: 0;
+                display: flex;
             }
             
             .nav-list {
                 flex-direction: column;
                 gap: 2rem;
-            text-align: center;
-        }
+                text-align: center;
+                width: 100%;
+                padding: 2rem 0;
+            }
         
             .nav-group-title {
                 font-size: 1.2rem;
