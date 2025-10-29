@@ -959,17 +959,17 @@ $stats = [
             <div class="card-body">
                         <div class="table-responsive members-table-view">
                     <table class="table table-hover members-table">
-                        <thead>
+                        <thead class="table-primary">
                             <tr>
-                                <th class="col-photo" style="background-color: #f8f9fa; font-weight: bold;">📸 Photo</th>
-                                <th class="col-id">ID</th>
-                                <th class="col-nom">Nom</th>
-                                <th class="col-prenom">Prénom</th>
-                                <th class="col-date">Date de naissance</th>
-                                <th class="col-age">Âge</th>
-                                <th class="col-equipe">Équipe</th>
-                                <th class="col-statut">Statut</th>
-                                <th class="col-actions">Actions</th>
+                                <th style="width: 50px;">Photo</th>
+                                <th style="width: 40px;">ID</th>
+                                <th style="width: 100px;">Nom</th>
+                                <th style="width: 100px;">Prénom</th>
+                                <th style="width: 80px;">Né le</th>
+                                <th style="width: 50px;">Âge</th>
+                                <th style="width: 100px;">Équipe</th>
+                                <th style="width: 80px;">Statut</th>
+                                <th style="width: 120px;">Actions</th>
                             </tr>
                         </thead>
                                 <tbody>
@@ -1013,20 +1013,19 @@ $stats = [
                                         }
                                         
                                         if ($membre['photo'] && file_exists($fullPhotoPath)): ?>
-                                            <img src="<?= htmlspecialchars($displayPath) ?>" alt="Photo de <?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?>" class="member-photo rounded-circle">
-                                            <!-- DEBUG: <?= htmlspecialchars($displayPath) ?> -->
+                                            <img src="<?= htmlspecialchars($displayPath) ?>" alt="Photo de <?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?>" class="member-photo rounded-circle" style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #0d6efd;">
                                         <?php else: ?>
-                                            <div class="photo-placeholder rounded-circle d-flex align-items-center justify-content-center">
-                                                <i class="fas fa-user text-white"></i>
+                                            <div class="photo-placeholder" style="width: 50px; height: 50px; background: linear-gradient(135deg, #0d6efd, #6f42c1); border: 2px solid #0d6efd; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                <i class="fas fa-user" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $membre['id'] ?></td>
-                                    <td><?= htmlspecialchars($membre['nom']) ?></td>
-                                    <td><?= htmlspecialchars($membre['prenom']) ?></td>
-                                    <td><?= date('d/m/Y', strtotime($membre['date_naissance'])) ?></td>
-                                    <td><?= $age ?> ans</td>
-                                    <td><?= htmlspecialchars($membre['equipe_nom'] ?? 'Non assigné') ?></td>
+                                    <td><strong><?= htmlspecialchars($membre['nom']) ?></strong></td>
+                                    <td><strong><?= htmlspecialchars($membre['prenom']) ?></strong></td>
+                                    <td><?= date('d/m/y', strtotime($membre['date_naissance'])) ?></td>
+                                    <td><?= $age ?></td>
+                                    <td title="<?= htmlspecialchars($membre['equipe_nom'] ?? 'Non assigné') ?>"><?= htmlspecialchars(substr($membre['equipe_nom'] ?? 'Non assigné', 0, 15)) ?><?= strlen($membre['equipe_nom'] ?? 'Non assigné') > 15 ? '...' : '' ?></td>
                                     <td>
                                         <span class="badge-status status-<?= $membre['statut'] ?: 'non-assigne' ?>">
                                             <?= ucfirst($membre['statut'] ?: 'Non assigné') ?>
@@ -1130,20 +1129,19 @@ $stats = [
                                         }
                                         
                                         if ($membre['photo'] && file_exists($fullPhotoPath)): ?>
-                                            <img src="<?= htmlspecialchars($displayPath) ?>" alt="Photo de <?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?>" class="member-photo rounded-circle">
-                                            <!-- DEBUG: <?= htmlspecialchars($displayPath) ?> -->
+                                            <img src="<?= htmlspecialchars($displayPath) ?>" alt="Photo de <?= htmlspecialchars($membre['prenom'] . ' ' . $membre['nom']) ?>" class="member-photo rounded-circle" style="width: 50px; height: 50px; object-fit: cover; border: 2px solid #0d6efd;">
                                         <?php else: ?>
-                                            <div class="photo-placeholder rounded-circle d-flex align-items-center justify-content-center">
-                                                <i class="fas fa-user text-white"></i>
+                                            <div class="photo-placeholder" style="width: 50px; height: 50px; background: linear-gradient(135deg, #0d6efd, #6f42c1); border: 2px solid #0d6efd; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                                <i class="fas fa-user" style="color: white; font-size: 1.2rem;"></i>
                                             </div>
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $membre['id'] ?></td>
-                                    <td><?= htmlspecialchars($membre['nom']) ?></td>
-                                    <td><?= htmlspecialchars($membre['prenom']) ?></td>
-                                    <td><?= date('d/m/Y', strtotime($membre['date_naissance'])) ?></td>
-                                    <td><?= $age ?> ans</td>
-                                    <td><?= htmlspecialchars($membre['equipe_nom'] ?? 'Non assigné') ?></td>
+                                    <td><strong><?= htmlspecialchars($membre['nom']) ?></strong></td>
+                                    <td><strong><?= htmlspecialchars($membre['prenom']) ?></strong></td>
+                                    <td><?= date('d/m/y', strtotime($membre['date_naissance'])) ?></td>
+                                    <td><?= $age ?></td>
+                                    <td title="<?= htmlspecialchars($membre['equipe_nom'] ?? 'Non assigné') ?>"><?= htmlspecialchars(substr($membre['equipe_nom'] ?? 'Non assigné', 0, 15)) ?><?= strlen($membre['equipe_nom'] ?? 'Non assigné') > 15 ? '...' : '' ?></td>
                                     <td>
                                         <span class="badge-status status-<?= $membre['statut'] ?: 'non-assigne' ?>">
                                             <?= ucfirst($membre['statut'] ?: 'Non assigné') ?>
@@ -1184,6 +1182,85 @@ $stats = [
 </div>
 
 <style>
+/* Style identique aux transferts */
+.members-table {
+    font-size: 0.9rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+.table th, .table td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 6px;
+    font-size: 0.85rem;
+}
+
+/* Colonnes nom et prénom */
+.table th:nth-child(3), .table td:nth-child(3),
+.table th:nth-child(4), .table td:nth-child(4) {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+/* Colonne équipe */
+.table th:nth-child(7), .table td:nth-child(7) {
+    min-width: 100px;
+    max-width: 100px;
+}
+
+/* Tooltip pour les textes tronqués */
+.table td[title] {
+    cursor: help;
+}
+
+/* Styles pour les photos des membres */
+.member-photo {
+    width: 50px !important;
+    height: 50px !important;
+    object-fit: cover;
+    border: 2px solid #0d6efd;
+    border-radius: 50%;
+    transition: transform 0.2s, border-color 0.2s;
+    display: block;
+    margin: 0 auto;
+}
+
+.member-photo:hover {
+    transform: scale(1.1);
+    border-color: #28a745;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Placeholder pour les photos manquantes */
+.photo-placeholder {
+    width: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #0d6efd, #6f42c1);
+    border: 2px solid #0d6efd;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.photo-placeholder:hover {
+    transform: scale(1.1);
+    border-color: #28a745;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.photo-placeholder i {
+    font-size: 1.2rem;
+    color: white;
+}
+
 /* Styles spécifiques à la section Membres */
 .stats-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
