@@ -70,8 +70,9 @@ diagnostic_*.php
 *.test.php
 *.debug.php
 
-# Exception: Fichier de test de connexion DB pour déploiement
+# Exception: Fichiers de test pour déploiement
 !test_db_infinity.php
+!admin/test_contact_info.php
 
 # ===========================================
 # FICHIERS DE BACKUP ET TEMPORAIRES
