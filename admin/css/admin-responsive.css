@@ -210,6 +210,34 @@ html, body {
         font-size: var(--font-xs);
     }
     
+    /* CORRECTION DÉBORDEMENT BOUTON DÉCONNEXION */
+    .gmail-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        min-width: 0; /* Permet au flex de se rétrécir */
+    }
+    
+    .gmail-logo {
+        flex-shrink: 0;
+        min-width: 0;
+    }
+    
+    .gmail-user {
+        flex-shrink: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .gmail-user .gmail-btn {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 120px;
+    }
+    
     /* SIDEBAR OPTIMISÉE */
     .gmail-sidebar {
         width: 280px; /* Légèrement réduite */
@@ -492,6 +520,17 @@ html, body {
     
     .gmail-logo img {
         height: 28px;
+    }
+    
+    /* CORRECTION DÉBORDEMENT BOUTON DÉCONNEXION - TRÈS PETITS ÉCRANS */
+    .gmail-user .gmail-btn {
+        max-width: 100px;
+        font-size: 0.625rem; /* 10px */
+        padding: 2px 6px;
+    }
+    
+    .gmail-logo h1 {
+        font-size: 0.875rem; /* 14px */
     }
     
     .gmail-main {
