@@ -90,7 +90,7 @@
                         <a class="nav-link" href="index.php">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="nos-joueurs.php">Nos Joueurs</a>
+                        <!-- Lien vers Nos Joueurs retiré -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="entraineurs.php">Nos Entraîneurs</a>

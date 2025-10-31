@@ -1,4 +1,9 @@
 <?php
+// Désactivé côté public à la demande du promoteur
+http_response_code(403);
+header('Content-Type: application/json');
+echo json_encode(['success' => false, 'error' => 'Accès refusé']);
+exit;
 /**
  * API pour récupérer les joueurs par sexe et catégorie
  */

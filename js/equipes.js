@@ -202,9 +202,7 @@ function showEquipesFallback() {
                 <button class="btn btn-primary me-2" onclick="loadEquipes()">
                     <i class="fas fa-refresh me-2"></i>Réessayer
                 </button>
-                <a href="joueurs.php" class="btn btn-outline-primary">
-                    <i class="fas fa-users me-2"></i>Voir les joueurs
-                </a>
+                <!-- Bouton vers joueurs retiré -->
             </div>
             <div class="mt-3">
                 <small class="text-muted">

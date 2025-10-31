@@ -772,7 +772,7 @@ try {
                                 <li><a href="#about">À Propos</a></li>
                                 <li><a href="organigramme.php">Organigramme</a></li>
                                 <li><a href="nos-equipes.php">Nos Équipes</a></li>
-                                <li><a href="nos-joueurs.php">Nos Joueurs</a></li>
+                                <!-- Lien vers la liste des joueurs retiré à la demande du président -->
                                 <li><a href="entraineurs.php">Entraîneurs</a></li>
                         </ul>
                     </li>

@@ -231,7 +231,7 @@ foreach ($images_galerie as $image) {
                         <a class="nav-link" href="nos-equipes.php">Nos Équipes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="nos-joueurs.php">Nos Joueurs</a>
+                        <!-- Lien vers Nos Joueurs retiré -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="entraineurs.php">Entraîneurs</a>

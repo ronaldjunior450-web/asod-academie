@@ -1,4 +1,6 @@
 <?php
+http_response_code(404);
+exit('Page non disponible.');
 require_once 'php/config.php';
 
 try {

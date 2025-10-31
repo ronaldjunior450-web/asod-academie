@@ -1,3 +1,7 @@
+<?php
+http_response_code(404);
+exit('Page non disponible.');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

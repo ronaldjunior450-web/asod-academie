@@ -51,10 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <i class="fas fa-users me-2"></i>
                                     Voir toutes les équipes
                                 </a>
-                                <a href="nos-joueurs.php" class="btn btn-outline-primary">
-                                    <i class="fas fa-user-friends me-2"></i>
-                                    Voir nos joueurs
-                                </a>
+                                <!-- Bouton Voir nos joueurs retiré -->
                             </div>
                         </div>
                     </div>

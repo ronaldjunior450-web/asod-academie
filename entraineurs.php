@@ -71,7 +71,7 @@ $stats = getEntraineursStats();
                         <a class="nav-link" href="formation.php">Formation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="nos-joueurs.php">Nos Joueurs</a>
+                        <!-- Lien vers Nos Joueurs retiré -->
                     </li>
                 </ul>
             </div>
