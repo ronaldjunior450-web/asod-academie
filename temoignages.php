@@ -237,6 +237,66 @@ try {
         .nav-link:hover {
             color: var(--asod-primary) !important;
         }
+        
+        /* Styles pour le formulaire de témoignage */
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .star-input {
+            display: none;
+        }
+        
+        .star-label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        .star-label:hover,
+        .star-label:hover ~ .star-label {
+            color: var(--asod-secondary);
+        }
+        
+        .star-input:checked ~ .star-label,
+        .star-input:checked ~ .star-label ~ .star-label {
+            color: var(--asod-secondary);
+        }
+        
+        .form-control:focus {
+            border-color: var(--asod-primary);
+            box-shadow: 0 0 0 0.2rem rgba(30, 58, 138, 0.25);
+        }
+        
+        #formMessage {
+            min-height: 50px;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        @media (max-width: 768px) {
+            .card-body {
+                padding: 2rem !important;
+            }
+            
+            .star-label {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -325,6 +385,87 @@ try {
         </div>
     </section>
     <?php endif; ?>
+
+    <!-- Formulaire de Témoignage -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0" data-aos="fade-up">
+                        <div class="card-body p-5">
+                            <h2 class="text-center mb-4" style="color: var(--asod-primary);">
+                                <i class="fas fa-comment-dots me-2"></i>
+                                Partagez votre expérience
+                            </h2>
+                            <p class="text-center text-muted mb-4">
+                                Votre avis compte ! Partagez votre expérience avec ASOD ACADEMIE et aidez d'autres personnes à nous découvrir.
+                            </p>
+                            
+                            <form id="temoignageForm" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="prenom" class="form-label">Prénom *</label>
+                                        <input type="text" class="form-control" id="prenom" name="prenom" required 
+                                               minlength="2" maxlength="50" placeholder="Votre prénom">
+                                        <div class="invalid-feedback">
+                                            Le prénom doit contenir entre 2 et 50 caractères.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nom" class="form-label">Nom *</label>
+                                        <input type="text" class="form-control" id="nom" name="nom" required 
+                                               minlength="2" maxlength="50" placeholder="Votre nom">
+                                        <div class="invalid-feedback">
+                                            Le nom doit contenir entre 2 et 50 caractères.
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="temoignage" class="form-label">Votre témoignage *</label>
+                                    <textarea class="form-control" id="temoignage" name="temoignage" rows="5" required 
+                                              minlength="10" maxlength="1000" 
+                                              placeholder="Partagez votre expérience avec ASOD ACADEMIE..."></textarea>
+                                    <div class="form-text">
+                                        <span id="charCount">0</span> / 1000 caractères
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Le témoignage doit contenir entre 10 et 1000 caractères.
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label">Note (optionnelle)</label>
+                                    <div class="d-flex justify-content-center align-items-center gap-2">
+                                        <span class="text-muted me-2">1</span>
+                                        <div class="star-rating">
+                                            <?php for ($i = 1; $i <= 5; $i++): ?>
+                                            <input type="radio" name="note" id="star<?= $i ?>" value="<?= $i ?>" 
+                                                   class="star-input" <?= $i === 5 ? 'checked' : '' ?>>
+                                            <label for="star<?= $i ?>" class="star-label">
+                                                <i class="fas fa-star"></i>
+                                            </label>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <span class="text-muted ms-2">5</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        Envoyer mon témoignage
+                                    </button>
+                                </div>
+                                
+                                <div id="formMessage" class="mt-3"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Témoignages Section -->
     <section class="py-5">
@@ -429,6 +570,119 @@ try {
         AOS.init({
             duration: 800,
             once: true
+        });
+        
+        // Gestion du formulaire de témoignage
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('temoignageForm');
+            const textarea = document.getElementById('temoignage');
+            const charCount = document.getElementById('charCount');
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            // Compteur de caractères
+            if (textarea && charCount) {
+                textarea.addEventListener('input', function() {
+                    const length = this.value.length;
+                    charCount.textContent = length;
+                    
+                    if (length > 1000) {
+                        charCount.style.color = '#dc3545';
+                    } else if (length > 800) {
+                        charCount.style.color = '#ffc107';
+                    } else {
+                        charCount.style.color = '#6c757d';
+                    }
+                });
+            }
+            
+            // Soumission du formulaire
+            if (form) {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Validation HTML5
+                    if (!form.checkValidity()) {
+                        form.classList.add('was-validated');
+                        return;
+                    }
+                    
+                    // Désactiver le bouton pendant l'envoi
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...';
+                    formMessage.innerHTML = '';
+                    
+                    // Récupérer la note sélectionnée
+                    const noteInput = form.querySelector('input[name="note"]:checked');
+                    const note = noteInput ? noteInput.value : null;
+                    
+                    // Préparer les données
+                    const formData = new FormData();
+                    formData.append('nom', document.getElementById('nom').value.trim());
+                    formData.append('prenom', document.getElementById('prenom').value.trim());
+                    formData.append('temoignage', document.getElementById('temoignage').value.trim());
+                    if (note) {
+                        formData.append('note', note);
+                    }
+                    
+                    try {
+                        const response = await fetch('php/temoignage.php', {
+                            method: 'POST',
+                            body: formData
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (data.success) {
+                            formMessage.innerHTML = `
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-check-circle me-2"></i>
+                                    ${data.message}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            `;
+                            
+                            // Réinitialiser le formulaire
+                            form.reset();
+                            form.classList.remove('was-validated');
+                            charCount.textContent = '0';
+                            
+                            // Réinitialiser les étoiles à 5
+                            document.getElementById('star5').checked = true;
+                            
+                            // Scroll vers le message
+                            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                            
+                            // Recharger la page après 3 secondes pour voir le nouveau témoignage (s'il est publié)
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 3000);
+                        } else {
+                            formMessage.innerHTML = `
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    ${data.message}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            `;
+                            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    } catch (error) {
+                        formMessage.innerHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Une erreur est survenue lors de l'envoi. Veuillez réessayer plus tard.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        `;
+                        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } finally {
+                        // Réactiver le bouton
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Envoyer mon témoignage';
+                    }
+                });
+            }
         });
     </script>
 </body>
