@@ -265,20 +265,38 @@ if (empty($images_galerie)) {
     row-gap: var(--spacing-lg, 1.5rem);
 }
 
+.galerie-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.galerie-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .thumb-wrapper { 
     position: relative; 
     border-top-left-radius: var(--spacing-sm, 0.5rem); 
     border-top-right-radius: var(--spacing-sm, 0.5rem); 
     overflow: hidden; 
-    background: #f8f9fa; 
+    background: #f8f9fa;
+    aspect-ratio: 3 / 4; /* Format portrait pour mieux afficher les images verticales */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
 }
 
 .galerie-thumb { 
     display: block; 
     width: 100%; 
-    height: 12.5rem; /* 200px - réduit pour mobile */
+    height: 100%;
     object-fit: cover; 
-    object-position: center top; 
+    object-position: center center; 
+    background: #f0f0f0;
+    transition: transform 0.3s ease;
 }
 
 .galerie-actions { 
@@ -293,6 +311,10 @@ if (empty($images_galerie)) {
 
 .thumb-wrapper:hover .galerie-actions {
     opacity: 1;
+}
+
+.thumb-wrapper:hover .galerie-thumb {
+    transform: scale(1.05);
 }
 
 .galerie-actions .btn { 
@@ -324,8 +346,8 @@ if (empty($images_galerie)) {
         gap: var(--spacing-md, 1rem);
     }
     
-    .galerie-thumb {
-        height: 10rem; /* 160px */
+    .thumb-wrapper {
+        aspect-ratio: 3 / 4; /* Format plus vertical sur mobile */
     }
     
     .galerie-actions {
@@ -345,8 +367,8 @@ if (empty($images_galerie)) {
         gap: var(--spacing-sm, 0.5rem);
     }
     
-    .galerie-thumb {
-        height: 8rem; /* 128px */
+    .thumb-wrapper {
+        aspect-ratio: 3 / 4; /* Format vertical pour très petits écrans */
     }
 }
 </style>
@@ -536,8 +558,8 @@ if (empty($images_galerie)) {
                                      alt="<?= htmlspecialchars($image['titre']) ?>" 
                                      class="galerie-thumb" data-fullsrc="/<?= htmlspecialchars($image['image_path']) ?>">
                                 <?php else: ?>
-                                <div class="bg-light d-flex align-items-center justify-content-center rounded-top" 
-                                     style="height: 220px;">
+                                <div class="bg-light d-flex align-items-center justify-content-center" 
+                                     style="width: 100%; height: 100%; min-height: 200px;">
                                     <i class="fas fa-image fa-3x text-muted"></i>
                                 </div>
                                 <?php endif; ?>
